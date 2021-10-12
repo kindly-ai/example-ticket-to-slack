@@ -3,6 +3,10 @@ import { createHmac, timingSafeEqual } from "crypto";
 import axios from 'axios';
 import express from 'express';
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const { KINDLY_BOT_HMAC, PORT, SLACK_WEBHOOK_URL, SLACK_CHANNEL, VERIFY_TOKEN } = process.env;
 
 const app = express();
@@ -80,5 +84,5 @@ app.get('/', handleTicketWebhookSetup);
 app.post('/', handleTicketWebhook);
 
 app.listen(PORT, () => {
-  console.log(`http://localhost:${PORT}`);
+  console.log(`http://localhost:${PORT || 3000}`);
 })
